@@ -566,36 +566,41 @@ body.offline #offbadge { display: block; }
 .bni { font-size: 18px; }
 
 /* ── PETALS ── */
-:root {
-  --petal1: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23ffd6e8' d='M16 2c4 6 10 8 10 14s-6 12-10 12S6 22 6 16 12 8 16 2z'/></svg>");
-  --petal2: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23ffccdd' d='M16 3c5 5 11 7 11 13s-7 13-11 13S5 21 5 16 11 8 16 3z'/></svg>");
-  --petal3: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23ffc2d6' d='M16 4c4 4 9 6 9 12s-5 12-9 12S7 22 7 16 12 8 16 4z'/></svg>");
-  --petal4: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23ffb8cf' d='M16 3c3 5 8 7 8 13s-5 13-8 13S8 21 8 16 13 8 16 3z'/></svg>");
-  --petal5: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23ffafc9' d='M16 2c5 6 9 8 9 14s-4 12-9 12S7 22 7 16 11 8 16 2z'/></svg>");
-}
-
 .petal {
   position: fixed;
-  top: -10vh;
-  width: 18px;
-  height: 18px;
-  background-size: contain;
-  background-repeat: no-repeat;
+  top: -40px;
   pointer-events: none;
-  opacity: 0.85;
-  z-index: 2147483647;
-  animation: fall var(--fall-duration) linear forwards,
-             sway var(--sway-duration) ease-in-out infinite alternate;
+  z-index: 9997;
+  opacity: 0.9;
+
+  /* Petal shape */
+  background: radial-gradient(circle at 30% 20%, #ffeef5 0, #f7c3d7 40%, #e89abf 100%);
+  border-radius: 60% 40% 70% 30%;
   transform-origin: center;
+
+  animation:
+    petal-fall var(--fall-duration, 8s) linear forwards,
+    petal-sway var(--sway-duration, 4s) ease-in-out infinite alternate,
+    petal-spin var(--spin-duration, 7s) linear infinite;
 }
 
-/* Vertical fall */
-@keyframes fall {
+@keyframes petal-fall {
   to {
-    transform: translateY(120vh) translateX(var(--drift)) rotate(var(--rotation));
+    transform: translateY(110vh) translateX(var(--drift, 0));
     opacity: 0;
   }
 }
+
+@keyframes petal-sway {
+  from { transform: translateX(calc(var(--sway, 0) * -1)); }
+  to   { transform: translateX(var(--sway, 0)); }
+}
+
+@keyframes petal-spin {
+  from { rotate: 0deg; }
+  to   { rotate: 540deg; }
+}
+
 
 /* Horizontal wind sway */
 @keyframes sway {
