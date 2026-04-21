@@ -758,16 +758,17 @@ function renderNotes() {
 }
 
 /* =========================================================
-   PETALS ANIMATION (🌸 FIXED)
+   PETALS ANIMATION (🌸 CINEMATIC SAKURA)
    ========================================================= */
 const petalBtn = document.getElementById("petal-btn");
+
 if (petalBtn) {
   petalBtn.addEventListener("click", () => {
-  for (let i = 0; i < 40; i++) {
-    setTimeout(spawnPetal, i * 120);
-  }
-});
-
+    for (let i = 0; i < 40; i++) {
+      setTimeout(spawnPetal, i * 120);
+    }
+  });
+}
 
 function spawnPetal() {
   const p = document.createElement("div");
@@ -805,6 +806,7 @@ function spawnPetal() {
   // Cleanup
   setTimeout(() => p.remove(), 15000);
 }
+
 
 /* =========================================================
    RESET BUTTON (↺ NEW)
