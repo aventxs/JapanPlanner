@@ -758,10 +758,9 @@ function renderNotes() {
 }
 
 /* =========================================================
-   PETALS ANIMATION (🌸 CINEMATIC SAKURA)
+   PETALS ANIMATION — HIGH QUALITY
    ========================================================= */
 const petalBtn = document.getElementById("petal-btn");
-
 if (petalBtn) {
   petalBtn.addEventListener("click", () => {
     for (let i = 0; i < 40; i++) {
@@ -774,38 +773,27 @@ function spawnPetal() {
   const p = document.createElement("div");
   p.className = "petal";
 
-  // Random petal shape
-  const shapes = ["var(--petal1)", "var(--petal2)", "var(--petal3)", "var(--petal4)", "var(--petal5)"];
-  p.style.backgroundImage = shapes[Math.floor(Math.random() * shapes.length)];
-
   // Random size
-  const size = 14 + Math.random() * 12;
+  const size = 16 + Math.random() * 14;
   p.style.width = size + "px";
-  p.style.height = size + "px";
+  p.style.height = size * 1.4 + "px";
 
   // Random horizontal start
   p.style.left = Math.random() * 100 + "vw";
 
-  // Random fall duration (depth effect)
-  p.style.setProperty("--fall-duration", 6 + Math.random() * 6 + "s");
+  // Depth / timing
+  p.style.setProperty("--fall-duration", 6 + Math.random() * 5 + "s");
+  p.style.setProperty("--sway-duration", 3 + Math.random() * 3 + "s");
+  p.style.setProperty("--spin-duration", 5 + Math.random() * 4 + "s");
 
-  // Random sway duration
-  p.style.setProperty("--sway-duration", 3 + Math.random() * 4 + "s");
-
-  // Random drift (wind)
+  // Random drift + sway
   p.style.setProperty("--drift", (Math.random() * 40 - 20) + "vw");
-
-  // Random sway amount
   p.style.setProperty("--sway", (Math.random() * 30 - 15) + "px");
 
-  // Random rotation
-  p.style.setProperty("--rotation", (Math.random() * 720 - 360) + "deg");
-
   document.body.appendChild(p);
-
-  // Cleanup
   setTimeout(() => p.remove(), 15000);
 }
+
 
 
 /* =========================================================
