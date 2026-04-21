@@ -1,49 +1,50 @@
-/* =========================================================
-   JAPAN'26 — SERVICE WORKER
-   Offline caching for PWA functionality
-   ========================================================= */
-
-const CACHE = "japan26-cache-v1";
-
+const CACHE  = “japan26-v4”;
 const ASSETS = [
-  "index.html",
-  "style.css",
-  "script.js",
-  "manifest.json",
-  "icon-192.png",
-  "icon-512.png"
+“index.html”,
+“style.css”,
+“script.js”,
+“manifest.json”,
+“apple-touch-icon.png”,
+“icon-192.svg”,
+“icon-512.svg”
 ];
 
-/* Install */
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(ASSETS))
-  );
-  self.skipWaiting();
+self.addEventListener(“install”, function(e) {
+e.waitUntil(
+caches.open(CACHE)
+.then(function(c) { return c.addAll(ASSETS); })
+.then(function() { return self.skipWaiting(); })
+);
 });
 
-/* Activate */
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(key => key !== CACHE)
-          .map(key => caches.delete(key))
-      )
-    )
-  );
-  self.clients.claim();
+self.addEventListener(“activate”, function(e) {
+e.waitUntil(
+caches.keys().then(function(keys) {
+return Promise.all(
+keys.filter(function(k){ return k !== CACHE; }).map(function(k){ return caches.delete(k); })
+);
+}).then(function(){ return self.clients.claim(); })
+);
 });
 
-/* Fetch */
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      return (
-        cached ||
-        fetch(event.request).catch(() => caches.match("index.html"))
-      );
-    })
-  );
+self.addEventListener(“fetch”, function(e) {
+var url = e.request.url;
+if (url.indexOf(“fonts.g”) > -1) {
+e.respondWith(
+fetch(e.request)
+.then(function(r){ caches.open(CACHE).then(function(c){ c.put(e.request,r.clone()); }); return r; })
+.catch(function(){ return caches.match(e.request); })
+);
+} else {
+e.respondWith(
+caches.match(e.request).then(function(cached) {
+return cached || fetch(e.request)
+.then(function(r) {
+if (r && r.ok) { caches.open(CACHE).then(function(c){ c.put(e.request,r.clone()); }); }
+return r;
+})
+.catch(function(){ return caches.match(“index.html”); });
+})
+);
+}
 });
