@@ -565,12 +565,12 @@ body.offline #offbadge { display: block; }
 .bntab:active { transform: scale(0.92); }
 .bni { font-size: 18px; }
 
-/* ── PETALS ── */
+/* ── PETALS (CINEMATIC SAKURA) ── */
 .petal {
   position: fixed;
   top: -40px;
   pointer-events: none;
-  z-index: 9997;
+  z-index: 9999;
   opacity: 0.9;
 
   /* Realistic petal shape */
@@ -602,6 +602,7 @@ body.offline #offbadge { display: block; }
   from { rotate: 0deg; }
   to   { rotate: 540deg; }
 }
+
 
 
 
