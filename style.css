@@ -573,8 +573,10 @@ body.offline #offbadge { display: block; }
   z-index: 9997;
   opacity: 0.9;
 
-  /* Petal shape */
-  background: radial-gradient(circle at 30% 20%, #ffeef5 0, #f7c3d7 40%, #e89abf 100%);
+  /* Realistic petal shape */
+  width: 22px;
+  height: 32px;
+  background: radial-gradient(circle at 30% 20%, #ffeef5 0%, #f7c3d7 40%, #e89abf 100%);
   border-radius: 60% 40% 70% 30%;
   transform-origin: center;
 
@@ -586,7 +588,7 @@ body.offline #offbadge { display: block; }
 
 @keyframes petal-fall {
   to {
-    transform: translateY(110vh) translateX(var(--drift, 0));
+    transform: translateY(120vh) translateX(var(--drift, 0));
     opacity: 0;
   }
 }
@@ -601,12 +603,6 @@ body.offline #offbadge { display: block; }
   to   { rotate: 540deg; }
 }
 
-
-/* Horizontal wind sway */
-@keyframes sway {
-  from { transform: translateX(0px); }
-  to   { transform: translateX(var(--sway)); }
-}
 
 
 /* ── SCROLL END ── */
