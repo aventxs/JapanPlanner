@@ -757,9 +757,7 @@ function renderNotes() {
   });
 }
 
-/* =========================================================
-   PETALS — CINEMATIC SAKURA
-   ========================================================= */
+/* PETALS — CINEMATIC SAKURA */
 const petalBtn = document.getElementById("petal-btn");
 
 if (petalBtn) {
@@ -774,29 +772,22 @@ function spawnPetal() {
   const p = document.createElement("div");
   p.className = "petal";
 
-  // Random size
   const size = 16 + Math.random() * 14;
   p.style.width = size + "px";
   p.style.height = size * 1.4 + "px";
 
-  // Random horizontal start
   p.style.left = Math.random() * 100 + "vw";
 
-  // Depth / timing
   p.style.setProperty("--fall-duration", 6 + Math.random() * 5 + "s");
   p.style.setProperty("--sway-duration", 3 + Math.random() * 3 + "s");
   p.style.setProperty("--spin-duration", 5 + Math.random() * 4 + "s");
 
-  // Random drift + sway
   p.style.setProperty("--drift", (Math.random() * 40 - 20) + "vw");
   p.style.setProperty("--sway", (Math.random() * 30 - 15) + "px");
 
   document.body.appendChild(p);
   setTimeout(() => p.remove(), 15000);
 }
-
-
-
 
 /* =========================================================
    RESET BUTTON (↺ NEW)
