@@ -573,7 +573,6 @@ body.offline #offbadge { display: block; }
   z-index: 9999;
   opacity: 0.9;
 
-  /* Realistic petal shape */
   width: 22px;
   height: 32px;
   background: radial-gradient(circle at 30% 20%, #ffeef5 0%, #f7c3d7 40%, #e89abf 100%);
@@ -602,8 +601,6 @@ body.offline #offbadge { display: block; }
   from { rotate: 0deg; }
   to   { rotate: 540deg; }
 }
-
-
 
 
 /* ── SCROLL END ── */
