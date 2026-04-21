@@ -763,9 +763,11 @@ function renderNotes() {
 const petalBtn = document.getElementById("petal-btn");
 if (petalBtn) {
   petalBtn.addEventListener("click", () => {
-    for (let i = 0; i < 18; i++) spawnPetal();
-  });
-}
+  for (let i = 0; i < 40; i++) {
+    setTimeout(spawnPetal, i * 120);
+  }
+});
+
 
 function spawnPetal() {
   const p = document.createElement("div");
@@ -803,13 +805,6 @@ function spawnPetal() {
   // Cleanup
   setTimeout(() => p.remove(), 15000);
 }
-
-petalBtn.addEventListener("click", () => {
-  for (let i = 0; i < 40; i++) {
-    setTimeout(spawnPetal, i * 120);
-  }
-});
-
 
 /* =========================================================
    RESET BUTTON (↺ NEW)
