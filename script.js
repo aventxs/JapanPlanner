@@ -758,9 +758,10 @@ function renderNotes() {
 }
 
 /* =========================================================
-   PETALS ANIMATION — HIGH QUALITY
+   PETALS — CINEMATIC SAKURA
    ========================================================= */
 const petalBtn = document.getElementById("petal-btn");
+
 if (petalBtn) {
   petalBtn.addEventListener("click", () => {
     for (let i = 0; i < 40; i++) {
@@ -793,6 +794,7 @@ function spawnPetal() {
   document.body.appendChild(p);
   setTimeout(() => p.remove(), 15000);
 }
+
 
 
 
