@@ -546,24 +546,54 @@ body.offline #offbadge { display: block; }
 }
 .notes-input::placeholder { color: var(--fog); }
 
-/* ── BOTTOM NAV ── */
+/* ── iOS STYLE BOTTOM NAV ── */
 .bnav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: var(--ink2); border-top: 1px solid var(--line);
-  display: flex; justify-content: space-around;
-  padding: 8px 4px 18px; z-index: 100;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: rgba(20, 24, 36, 0.85);
+  backdrop-filter: blur(18px);
+
+  border-top: 1px solid rgba(255,255,255,0.06);
+
+  display: flex;
+  justify-content: space-around;
+
+  padding: 10px 0 26px;
+  z-index: 100;
 }
+
 .bntab {
-  background: none; border: none; color: var(--mist);
-  font-size: 10px; font-family: var(--ui);
-  display: flex; flex-direction: column; align-items: center;
-  gap: 3px; cursor: pointer; padding: 4px 10px;
-  border-radius: 10px; transition: all 0.2s;
-  user-select: none; -webkit-user-select: none;
+  background: none;
+  border: none;
+  color: var(--mist);
+
+  font-size: 10px;
+  font-family: var(--ui);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+
+  padding: 6px 14px;
+  border-radius: 12px;
+
+  transition: all 0.25s ease;
 }
-.bntab.active { color: var(--gold); background: rgba(212,168,75,0.1); }
-.bntab:active { transform: scale(0.92); }
-.bni { font-size: 18px; }
+
+.bntab.active {
+  color: var(--gold);
+  background: rgba(212,168,75,0.12);
+  backdrop-filter: blur(10px);
+}
+
+.bni {
+  font-size: 22px;
+}
+
 
 /* ── PETALS (CINEMATIC SAKURA) ── */
 .petal {
