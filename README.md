@@ -1,1 +1,1 @@
-# JapanPlanner
+# Japan-26
