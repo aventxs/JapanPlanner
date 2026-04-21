@@ -771,14 +771,44 @@ function spawnPetal() {
   const p = document.createElement("div");
   p.className = "petal";
 
+  // Random petal shape
+  const shapes = ["var(--petal1)", "var(--petal2)", "var(--petal3)", "var(--petal4)", "var(--petal5)"];
+  p.style.backgroundImage = shapes[Math.floor(Math.random() * shapes.length)];
+
+  // Random size
+  const size = 14 + Math.random() * 12;
+  p.style.width = size + "px";
+  p.style.height = size + "px";
+
+  // Random horizontal start
   p.style.left = Math.random() * 100 + "vw";
-  p.style.animationDuration = 4 + Math.random() * 3 + "s";
-  p.style.opacity = 0.6 + Math.random() * 0.4;
-  p.style.zIndex = 9999; // ← REQUIRED
+
+  // Random fall duration (depth effect)
+  p.style.setProperty("--fall-duration", 6 + Math.random() * 6 + "s");
+
+  // Random sway duration
+  p.style.setProperty("--sway-duration", 3 + Math.random() * 4 + "s");
+
+  // Random drift (wind)
+  p.style.setProperty("--drift", (Math.random() * 40 - 20) + "vw");
+
+  // Random sway amount
+  p.style.setProperty("--sway", (Math.random() * 30 - 15) + "px");
+
+  // Random rotation
+  p.style.setProperty("--rotation", (Math.random() * 720 - 360) + "deg");
 
   document.body.appendChild(p);
-  setTimeout(() => p.remove(), 7000);
+
+  // Cleanup
+  setTimeout(() => p.remove(), 15000);
 }
+
+petalBtn.addEventListener("click", () => {
+  for (let i = 0; i < 40; i++) {
+    setTimeout(spawnPetal, i * 120);
+  }
+});
 
 
 /* =========================================================
